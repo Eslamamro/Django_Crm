@@ -76,7 +76,7 @@ def add_record(request):
             if form.is_valid():
                 add_record = form.save()
                 messages.success(request, 'Record Added Successfully')
-                return redirect('home')
+                return redirect('records')
         return render(request, 'add_record.html', {'form': form})
     else:
         messages.success(request, 'You Must Be Logged In')
@@ -91,6 +91,14 @@ def update_record(request, pk):
             messages.success(request, 'Record Has Been Updated Successfully!')
             return redirect('customer-record', pk=pk)
         return render(request, 'update_record.html', {'form': form})
+    else:
+        messages.success(request, 'You Must Be Logged In')
+        return redirect('home')
+
+def records_table(request):
+    if request.user.is_authenticated:
+        records = Record.objects.all()
+        return render(request, 'records_table.html', {'records': records})
     else:
         messages.success(request, 'You Must Be Logged In')
         return redirect('home')

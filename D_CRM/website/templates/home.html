@@ -3,47 +3,10 @@
 {% block content %}
 
 
-        {% if user.is_authenticated %}
-
-
-    <div class="container ">
-        <div class="d-flex justify-content-start">
-            <a href="{% url 'add-record' %}" class="btn btn-sm btn-dark mb-3">+ Add</a>
-        </div>
-    </div>
-
-
-
-
-<table class="table table-hover">
-  <thead class="table-dark mt-2">
-    <tr>
-      <th class="col-1 text-center">#</th>
-      <th class="col">Name</th>
-      <th class="col">Email</th>
-      <th class="col">Phone</th>
-      <th class="col">Address</th>
-      <th class="col">City</th>
-      <th class="col">Created_at</th>
-
-    </tr>
-  </thead>
-  <tbody class="table-group-divider">
-            {% if records %}
-                    {% for record in records%}
-    <tr>
-        <td class="text-center"><a href="{% url 'customer-record' record.id %}">{{ record.id }}</a></td>
-        <td> {{ record.first_name }} {{ record.last_name }}</td>
-        <td>{{ record.email }}</td>
-        <td> {{ record.phone }}</td>
-        <td> {{ record.address }}</td>
-        <td> {{ record.city }}</td>
-        <td>{{ record.created_at|date:"d-m-Y" }}</td>
-    </tr>
-                    {% endfor%}
-            {% endif%}
-  </tbody>
-</table>
+{% if user.is_authenticated %}
+<div class="col-md-6 offset-md-3" >
+    <h1>Home Page...</h1>
+</div>
 
         {% else %}
     <div class="col-md-6 offset-md-3" >
@@ -67,4 +30,5 @@
             {% endif %}
                 </form>
     </div>
+
 {% endblock %}
